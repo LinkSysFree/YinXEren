@@ -27,6 +27,15 @@ body{
 
   h2 {
    margin-left: 40px;
+   text-align: center;
+  }
+
+  #watchVideo_time {
+    color: rgb(33, 105, 12);
+  }
+
+  #watchVideo_time_left {
+    color: rgb(255, 8, 0);
   }
 
   .warning{

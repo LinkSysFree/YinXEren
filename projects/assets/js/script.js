@@ -16,20 +16,21 @@ let isDocumentHidden = false;
 let like_time_second = 3;
 let share_time_second = 5;
 let subscribe_time_second = 3;
-let watch_time_minutes = 1;//secondsinminute * minutes
 
+let assigned_minutes = 8;
+let watch_time_minutes = 60 * assigned_minutes;//secondsinminute * minutes
+
+//-----------------------------------------------
 let window_to_watch = "https://youtu.be/nAisYHt8k68?si=lovnfyJmxXRsvQKN";//link of the video
 
 let main_Panel_Link = "https://linksysfree.github.io/Unlock_Link/";
 
 let name_of_zip = "YinXEren.zip";
 let filepath_zip = "projects/assets/download_zip/"+name_of_zip;
-
 //-----------------
-let minutes = 0;
 let seconds = 0;
 
-let ms = 0;
+let ms = 1000;
 
 let startCounting = true;
 
@@ -47,15 +48,12 @@ document.addEventListener('visibilitychange', function() {
     }
 });
 
+
 function startTimer(ms) {
     timerInterval = setInterval(() => {
       if (!isDocumentHidden) {
         if(startCounting){
-          seconds = seconds+1; // Increment the global variable
-          if(seconds == 60){
-            minutes++;
-            seconds = 0;
-          }  
+          seconds++; // Increment the global variable
         }
           printLastTimeRecorded(); // Move this here to log updated values
       } else {
@@ -69,7 +67,6 @@ function startTimer(ms) {
         // If executed then Like is done
         if (seconds >= like_time_second && (identifier === 'like')) {
             printLastTimeRecorded();
-            stopTime();
 
             likeButtonA.style.backgroundColor = 'green';
             likeButtonA.style.color = 'black';
@@ -96,7 +93,6 @@ function startTimer(ms) {
         // If executed then Share is done
         if (seconds >= share_time_second && (identifier === 'share')) {
             printLastTimeRecorded();
-            stopTime();
           
             shareButtonA.style.backgroundColor = 'green';
             shareButtonA.style.color = 'black';
@@ -123,7 +119,6 @@ function startTimer(ms) {
         // If executed then Subscribe is done
         if (seconds >= subscribe_time_second && (identifier === 'subscribe')) {
             printLastTimeRecorded();
-            stopTime();
           
             subsButtonA.style.backgroundColor = 'green';
             subsButtonA.style.color = 'black';
@@ -138,7 +133,7 @@ function startTimer(ms) {
 
             progressBtn.textContent = 'Unlock Progress 3/4';      
             
-            tellerText.innerHTML = '<div class="teller">Do: <div class="underlined" id="tellerTextID">Watch Time Needed: '+(watch_time_minutes + 2)+' : 00  Minutes<br>(Do Watch the Video Straight or it will restart)</div></div>'; 
+            tellerText.innerHTML = '<div class="teller">Do: <div class="underlined" id="tellerTextID">Watch Time Needed: '+(assigned_minutes)+' : 00  Minutes<br>(Do Watch the Video Straight or it will restart)</div></div>'; 
 
             //enabling the next Task
             //must disabled
@@ -151,9 +146,8 @@ function startTimer(ms) {
 
         // If executed then Youtube Watch is done LASTLY
         // Depends on how much time the video is
-        if (minutes >= watch_time_minutes && (identifier === 'watch')) {
+        if (seconds >= watch_time_minutes && (identifier === 'watch')) {
             printLastTimeRecorded();
-            stopTime();
            
             watchButtonA.style.backgroundColor = 'green';
             watchButtonA.style.color = 'black';
@@ -179,17 +173,49 @@ function printLastTimeRecorded(){
   if(startCounting){
     if(isDocumentHidden){
       console.clear();
-      console.log(minutes+ ":" +seconds);
+      console.log(seconds);
      } else {
       clearInterval(timerInterval);
      }
   }
 }
 
-function stopTime(){
+function stopTime() {
   clearInterval(timerInterval);
-  startCounting = false;
+  startCounting = false; // Stop counting when paused
+
+  // Only run this if the identifier is 'watch'
+  if (identifier === 'watch') {
+      let watch_time_progress = document.getElementById('watchVideo_time');
+      let watch_time_left = document.getElementById('watchVideo_time_left');
+
+      watch_time_progress.style.display = 'block';
+      watch_time_left.style.display = 'block';
+      
+      let watched_minutes = Math.floor(seconds / 60); // Convert seconds to whole minutes
+
+      // Update watched time display
+      if (watched_minutes > 0) {
+          watch_time_progress.textContent = watched_minutes + " minutes watched";
+      } else {
+          watch_time_progress.textContent = seconds + " seconds watched";
+      }
+
+      // Calculate and update the remaining time
+      let remaining_time = watch_time_minutes - seconds; // Remaining seconds
+      if (remaining_time > 60) {
+          watch_time_left.textContent = Math.floor(remaining_time / 60) + " minutes left";
+      } else {
+          watch_time_left.textContent = remaining_time + " seconds left";
+      }
+
+      if(remaining_time <= 0){
+        watch_time_progress.style.display = 'none';
+        watch_time_left.style.display = 'none';
+      }
+  }
 }
+
 
 function resetTime(){
   minutes = 0;
@@ -211,7 +237,7 @@ function redirectToYtToLike() {
     resetTime();
     linkForLikeShareWatch();
     identifier = 'like';
-    ms = 1000; //millisecond
+
     startTimer(ms);
     
     checker = 'doneLike';
@@ -225,9 +251,7 @@ function redirectToYtToShare() {
     resetTime();
     linkForLikeShareWatch();
 
-    ms = 999999999;//millisecond
     identifier = 'share';
-    startTimer(ms);
 
     checker = 'doneShare';
   }
@@ -241,9 +265,6 @@ function redirectToYtToSubscribe() {
     resetTime();
    window.open('https://www.youtube.com/@dream_mlbb');
     identifier = 'subscribe';
-    
-    ms = 999999999;
-    startTimer(ms);
 
     checker = 'doneSubscribe';
   }
@@ -259,8 +280,6 @@ function redirectToYtToWatch() {
 
     identifier = 'watch';
 
-    ms = 999999999;
-    startTimer(ms);
   }
 }
 
