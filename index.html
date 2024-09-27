@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Download Link</title>
+    <link rel="stylesheet" href="projects/assets/css/styles.css">
+</head>
+<body>
+
+    <div class="header">
+        <back class="back" onclick="backToMainPanel()">◀Back</back>
+        <h7>Mobile Legends Anime X Skin Scripts</h7>
+    </div>
+    
+    <!--Aldous X Saitama TodoList-->
+    <div class="AldousXSaitama container" disabled>
+        <h1>Unlock Download Link</h1>
+        <p><big class="warning">(Do not exit the Website or it will restart)</big></p>
+        <div id="tellerTextID"><div class="teller">Do: <div class="underlined" id="tellerTextID">Like the Video</div></div></div>
+        <button class="like_button" onclick="redirectToYtToLike()">
+            <img class="like_logo" src="projects/assets/images/like_logo.png">
+            <h2>Like Video</h2>
+        </button>
+        <button class="share_button" onclick="redirectToYtToShare()" disabled>
+            <img class="share_logo" src="projects/assets/images/share_logo.png">
+            <h2>Share Video</h2>
+        </button>
+        <button class="subscribe_button" onclick="redirectToYtToSubscribe()" disabled>
+            <img class="bell_logo" src="projects/assets/images/bell_logo.png">
+            <h2>Subscribe</h2>
+        </button>
+
+        <button class="watch_button" onclick="redirectToYtToWatch()" disabled>
+            <img class="yt_logo" src="projects/assets/images/yt_logo.png">
+            <h2>Watch Video</h2>
+        </button>
+        <div class="container_2btn">
+            <button class="progress">Unlock Progress 0/4</button>
+            <button class="download_button" onclick="downloadZip()" disabled>Download <br>(Aldous X Saitama Skin)</button>
+        </div>
+    </div>
+    
+    <script src="projects/assets/js/script.js"></script>
+</body>
+</html>

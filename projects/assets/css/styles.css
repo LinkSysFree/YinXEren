@@ -1,0 +1,187 @@
+
+
+body{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.container,
+.container_2btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container button {
+    margin: 10px 0; /* Add space between buttons */
+  }
+
+  .container_2btn {
+    margin-top: 5vh;
+  }
+  
+  .container h1 {
+    text-align: center;
+  }
+
+  h2 {
+   margin-left: 40px;
+  }
+
+  .warning{
+    text-align: center;
+   color: rgb(255, 17, 17);
+  }
+
+  .underlined{
+    text-decoration: underline;
+    color: rgb(22, 8, 177);
+  }
+  
+  /* Optional: Style the buttons */
+  .like_button, .share_button, .subscribe_button, .watch_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .like_button img, .share_button img, .subscribe_button img, .watch_button img {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    margin-right: 10px; /* Add space between image and text */
+  }
+
+
+  button{
+    width: 300px;
+    height: 60px;
+    border-radius: 30vh;
+    border: none;
+    font-size: 18px;
+  }
+
+  .like_button {
+    background-color: rgb(255, 17, 17);
+    color: white;
+    cursor: pointer;
+  }
+
+  .subscribe_button, .share_button, .watch_button{
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+  }
+
+  .share_logo, .bell_logo, .yt_logo {
+    filter: brightness(0) invert(1);
+  }
+
+
+  .progress {
+    background-color: black;
+    color: white;
+  }
+
+  .progress-overlay {
+    background-color: rgba(0, 0, 0, 0.25); /* 25% opacity black */
+  }
+
+.download_button {
+  background-color: red;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  }
+
+  .teller {
+    text-align: center;
+    color: rgb(33, 105, 12);
+  }
+
+  /*Header*/
+  .header {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0, 0, 0);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  h7{
+    color: white;
+    margin-left: auto; /* Moves the h7 element to the right */
+    margin-right: 2vh;
+  }
+
+  back{
+    font-size: 20px;
+    color: white;
+    margin-left: 2vh;
+    cursor: pointer;
+  }
+
+  me {
+    cursor: pointer;
+    color: rgb(229, 255, 0);
+  }
+
+  /*Selection Parts*/
+  .selection {/*display block*/
+    width: 100%;
+    height: 100%;
+  }
+  .display_skin {
+    margin-top: 10vh;
+    width: 400px;
+    height: 300px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img_anime_holder {
+    width: 350px;
+    height: 180px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.anime_pic {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+
+  .text_holder {
+    width: 350px;
+    height: 100px;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: flex-start; /* Align items to the left */
+  }
+
+  h5 {
+    margin-left: 2px;
+    font-family: Arial, sans-serif;
+  }
+
+  skin_name {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(66, 135, 245);
+  }
